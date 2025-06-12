@@ -20,7 +20,7 @@ int main()
     {
       system("mkdir -p /tmp/out");
       // Read the map template.
-      std::ifstream mapInFile("src/template_map.cc");
+      std::ifstream mapInFile("templates/template_map.cc");
       mr::String mapCode;
       while (std::getline(mapInFile, line))
         mapCode += line + '\n';
@@ -50,7 +50,7 @@ int main()
     else if (tokens[5] == "Reduce")
     {
       // Read the shuffle template.
-      std::ifstream shuffleInFile("src/template_shuffle.cc");
+      std::ifstream shuffleInFile("templates/template_shuffle.cc");
       mr::String shuffleCode;
       while (std::getline(shuffleInFile, line))
         shuffleCode += line + '\n';
@@ -68,9 +68,10 @@ int main()
       // Execute it!
       mr::String exe_cmd = "/tmp/task_shuffle /tmp/out/map_out.txt /tmp/out/shuffle_out.txt";
       system(exe_cmd.c_str());
+      std::cout << "Finished shuffle ..." << std::endl;
 
       // Read the reduce template.
-      std::ifstream reduceInFile("src/template_reduce.cc");
+      std::ifstream reduceInFile("templates/template_reduce.cc");
       mr::String reduceCode;
       while (std::getline(reduceInFile, line))
         reduceCode += line + '\n';
@@ -88,6 +89,7 @@ int main()
       // Execute it!
       exe_cmd = "/tmp/task_reduce /tmp/out/shuffle_out.txt " + tokens[1];
       system(exe_cmd.c_str());
+      std::cout << "Finished reduce ..." << std::endl;
     }
   }
   server.close_server();
