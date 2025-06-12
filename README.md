@@ -23,7 +23,7 @@
 │   ├── main.cc                             # 客户端进程源代码
 │   ├── Makefile                            # 编译文件
 │   ├── master.cc                           # JobTracker 进程源代码
-│   ├── worker.cc                           # TaskTracker 进程源代码
+│   └── worker.cc                           # TaskTracker 进程源代码
 │
 ├── README.md
 │
